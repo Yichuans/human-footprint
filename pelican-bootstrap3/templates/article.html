@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title|striptags }} - {{ SITENAME }}{% endblock %}
+{% block html_lang %}{{ article.lang }}{% endblock %}
+{% block meta %}
+    {% if article.author %}
+        <meta name="author" content="{{ article.author }}" />
+    {% else %}
+        <meta name="author" content="{{ AUTHOR }}" />
+    {% endif %}
+    {% if article.tags %}
+        <meta name="keywords" content="{{ article.tags|join(',')|striptags }}" />
+    {% endif %}
+    {% if article.summary %}
+        <meta name="description" content="{{ article.summary|striptags|escape }}" />
+    {% endif %}
+{% endblock %}
+{% block opengraph %}
+    {% if USE_OPEN_GRAPH %}
+        {% if OPEN_GRAPH_FB_APP_ID %}
+            <meta property="fb:app_id" content="{{ OPEN_GRAPH_FB_APP_ID }}"/>
+        {% endif %}
+        <meta property="og:site_name" content="{{ SITENAME }}" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="{{ article.title|striptags|escape }}"/>
+        <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}"/>
+        <meta property="og:description" content="{{ article.summary|striptags|escape }}"/>
+        <meta property="article:published_time" content="{{ article.date.strftime("%Y-%m-%d") }}" />
+        {% if article.category %}
+            <meta property="article:section" content="{{ article.category }}" />
+        {% endif %}
+        {% for tag in article.tags %}
+            <meta property="article:tag" content="{{ tag }}" />
+        {% endfor %}
+        {% if article.author %}
+            <meta property="article:author" content="{{ article.author }}" />
+        {% elif AUTHOR %}
+            <meta property="article:author" content="{{ AUTHOR }}" />
+        {% endif %}
+        {% if article.og_image %}
+            <meta property="og:image"
+                  content="{{ SITEURL }}/{{ article.og_image }}"/>
+        {% elif OPEN_GRAPH_IMAGE %}
+            <meta property="og:image"
+                  content="{{ SITEURL }}/{{ OPEN_GRAPH_IMAGE }}"/>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block canonical_rel %}
+<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
+{% endblock %}
+
+{% block map_libs %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet@2.0.7"></script>
+<style type="text/css">
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+</style>
+
+<!-- slider -->
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/leaflet-slider.css">
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/leaflet-slider.js"></script>
+
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% if DISPLAY_BREADCRUMBS %}
+        {% if DISPLAY_CATEGORY_IN_BREADCRUMBS %}
+            <ol class="breadcrumb">
+                <li><a href="{{ SITEURL }}" title="{{ SITENAME }}"><i class="fa fa-home fa-lg"></i></a></li>
+                <li><a href="{{ SITEURL }}/{{ article.category.url }}" title="{{ article.category }}">{{ article.category }}</a></li>
+                <li class="active">{{ article.title }}</li>
+            </ol>
+        {% else %}
+            <ol class="breadcrumb">
+                <li><a href="{{ SITEURL }}" title="{{ SITENAME }}"><i class="fa fa-home fa-lg"></i></a></li>
+                <li class="active">{{ article.title }}</li>
+            </ol>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="{{ SITEURL }}/{{ article.url }}"
+                       rel="bookmark"
+                       title="{{ _('Permalink to') }} {{ article.title|striptags }}">
+                        {{ article.title }}
+                    </a>
+                </h1>
+            </header>
+
+
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+                        {% include "includes/article_info.html" %}
+                    </div>
+                </div>
+
+                <div class="hf-content">
+                    <!-- hf map -->
+                    <div id="hf-map" class='content-section'>
+                    </div>
+
+                    <!-- hf stats -->
+                    <div class="hf-stats content-section">
+                        <div class="hf-change">
+                            <div class="panel panel-default num-stat">
+                                <div class="panel-heading">Human footprint change 1993 - 2009</div>
+                                <div class="panel-body">
+                                   <p style="font-size:10vw">{{ '{0:0.2f}'.format(article.hfcg|float)}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hf-years">
+                            <div class="hf-93">
+                                <div class="panel panel-default num-stat">
+                                    <div class="panel-heading">Human footprint 1993</div>
+                                    <div class="panel-body">
+                                        <p style="font-size:5vw">{{ '{0:0.2f}'.format(article.hf93|float)}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hf-09">
+                                <div class="panel panel-default num-stat">
+                                    <div class="panel-heading">Human footprint 2009</div>
+                                    <div class="panel-body">
+                                        <p style="font-size:5vw">{{ '{0:0.2f}'.format(article.hf09|float)}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- fl stats -->
+                    <div id="fl-viz" class='content-section'></div>
+
+                    <!-- fl map -->
+                    <div id='fl-map' class='content-section'>
+                    </div>            
+
+                </div>
+
+
+            </div>
+            <!-- /.entry-content -->
+            {% include 'includes/related-posts.html' %}
+            {% include 'includes/series.html' %}
+            {% include 'includes/addthis.html' %}
+            {% include 'includes/shariff.html' %}
+            {% include 'includes/comments.html' %}
+        </article>
+    </section>
+
+{% endblock %}
+
+{% block scripts %}
+{% if ADDTHIS_PROFILE %}
+    {% if ADDTHIS_DATA_TRACK_ADDRESSBAR|default(true) %}
+        <script type="text/javascript">var addthis_config = {"data_track_addressbar": true};</script>
+    {% endif %}
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid={{ ADDTHIS_PROFILE }}"></script>
+{% endif %}
+{% if SHARIFF|default(false) %}
+    <!-- add shariff support -->
+    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/shariff.min.js"></script>
+{% endif %}
+
+
+<!-- map -->
+// <script type="text/javascript">
+
+    // hf map ===========
+    var wh_url = 'http://services5.arcgis.com/Mj0hjvkNtV7NRhA7/arcgis/rest/services/Latest_WH/FeatureServer/0'
+    var hf_url = 'https://tiles2.arcgis.com/tiles/x494PplYsmeeZsYB/arcgis/rest/services/HF2009_1993/MapServer'
+
+    var map_hf = L.map('hf-map', {
+        attributionControl: false
+    });
+    L.esri.basemapLayer('Gray').addTo(map_hf);
+
+    // add WCS HF data change
+    L.esri.tiledMapLayer({
+      url: hf_url
+    }).addTo(map_hf);
+
+    // add wh boundary
+    var wh = L.esri.featureLayer({
+      url: wh_url,
+      where: "wdpaid={{ article.wdpaid }}"
+    });
+
+    wh.setStyle({
+        color: '#008080',
+        opacity: 1
+    });
+
+    wh.addTo(map_hf);
+
+    // fl map =====================
+    var fl_url = 'http://gis-treecover.wri.org/arcgis/rest/services/ForestCover_lossyear_time/ImageServer'
+
+    var map_fl = L.map('fl-map', {
+        attributionControl: false
+    });
+
+    L.esri.basemapLayer('Gray').addTo(map_fl);
+
+    // WRI forest loss
+    var fl_lyr = L.esri.imageMapLayer({
+        url: fl_url,
+        // renderingRule: { "rasterFunction":"NDVI Colorized" },
+        from: new Date('2001'),
+        to: new Date('2014')
+    }).addTo(map_fl);
+
+    var wh2 = L.esri.featureLayer({
+      url: wh_url,
+      where: "wdpaid={{ article.wdpaid }}"
+    });
+
+    wh2.setStyle({
+        color: '#008080',
+        opacity: 1
+    });
+
+    wh2.addTo(map_fl);
+
+    // slider
+    slider = L.control.slider(function(value) {
+                console.log(value);
+                fl_lyr.setTimeRange(new Date('2001'), new Date(value));
+            }, {
+            min: 2001,
+            max: 2014,
+            value: 2014,
+            step: 1,
+            size: '250px',
+            orientation:'vertical',
+            id: 'slider',
+            logo: 'year'
+        }).addTo(map_fl);
+
+
+    // var timeForm = document.getElementById('slider');
+
+    // timeInput.addEventListener('change', function updateTimeRange(e){
+    //     vegetation.setTimeRange(new Date(timeInput.value), new Date(timeInput.value));
+    //     e.preventDefault();
+    // });
+
+    // zoom ================
+    var query = L.esri.query({
+        url: wh_url
+    });
+
+    query.where("wdpaid={{ article.wdpaid }}").bounds(function(error, latLngBounds, response){
+        map_hf.fitBounds(latLngBounds, {
+            // hf maxzoom
+            maxZoom: 9 
+        });
+
+        map_fl.fitBounds(latLngBounds, {
+            // hf maxzoom
+            // maxZoom: 9 
+        });
+
+    });
+
+</script>
+
+
+<!-- d3 chart -->
+<!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/d3.min.js"></script>
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/d3plus.min.js"></script>
+<script>
+    var data = {{ article.fly }};
+
+    var visualization = d3plus.viz()
+        .container("#fl-viz")  // container DIV to hold the visualization
+        .data(data)  // data to use with the visualization
+        .type("line")       // visualization type
+        .id("type")         // key for which data is unique on
+        .text("forest cover")       // key to use for display text
+        .y({value: "forest loss", range: [0, {{ article.fc }}], label: 'Forest Loss'})     // key to use for y-axis
+        .x("year")          // key to use for x-axis
+        .draw()             // finally, draw the visualization!
+
+
+</script>
+
+{% endblock %}
