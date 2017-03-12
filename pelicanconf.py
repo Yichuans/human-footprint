@@ -35,6 +35,7 @@ DEFAULT_PAGINATION = False
 HIDE_SIDEBAR = True
 
 JINJA_EXTENSIONS = ['jinja2.ext.i18n']
+
 THEME = r"pelican-bootstrap3"
 
 PLUGIN_PATHS = ['pelican-plugins']
