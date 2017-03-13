@@ -1,7 +1,7 @@
 <footer class="post-info">
-    <span class="label label-default">Date</span>
+    <span class="label label-default">Inscription year</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }}</time>
+        <time datetime="{{ article.year }}"> {{ article.year }}</time>
     </span>
     {% if SHOW_DATE_MODIFIED %}
         {% if article.modified %}

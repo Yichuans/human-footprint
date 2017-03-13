@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = u'IUCN and WCS'
+AUTHOR = u'International Union for Conservation of Nature, University of Queensland, and Wildlife Conservation Society'
 SITENAME = u'Human Footprint and Forest Loss in natural World Heritage sites'
 SITEURL = ''
 
@@ -31,8 +31,9 @@ AUTHOR_FEED_RSS = None
 
 DEFAULT_PAGINATION = False
 
-# additional
+# additional ========
 HIDE_SIDEBAR = True
+DISPLAY_CATEGORIES_ON_MENU = False
 
 JINJA_EXTENSIONS = ['jinja2.ext.i18n']
 
@@ -44,6 +45,6 @@ PLUGINS = ['i18n_subsites']
 LOAD_CONTENT_CACHE = False
 
 DISQUS_SITENAME = 'hffl'
-CC_LICENSE = 'CC-BY'
+# CC_LICENSE = 'CC-BY'
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
