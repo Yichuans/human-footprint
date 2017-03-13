@@ -10,7 +10,9 @@ import sys
 sys.path.append(os.curdir)
 from pelicanconf import *
 
-SITEURL = 'https://yichuans.github.io/human-footprint/output'
+# SITEURL = 'http://yichuans.github.io/human-footprint/output'
+SITEURL = 'http://human-footprint.yichuans.me/output'
+
 RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
