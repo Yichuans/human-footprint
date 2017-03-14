@@ -36,11 +36,11 @@ ARTICLE_URL = 'sites/{wdpaid}/'
 ARTICLE_SAVE_AS = 'sites/{wdpaid}/index.html'
 
 HIDE_SIDEBAR = True
-
 DISPLAY_CATEGORIES_ON_MENU = False
 
 # A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
 COLLAPSE_NAVBAR = True
+MENUITEMS = [('country', SITEURL + '/tags')]
 
 JINJA_EXTENSIONS = ['jinja2.ext.i18n']
 
