@@ -12,7 +12,7 @@ from pelicanconf import *
 
 # SITEURL = 'http://yichuans.github.io/human-footprint/output'
 SITEURL = 'http://human-footprint.yichuans.me/output'
-
+d
 RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'

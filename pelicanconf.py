@@ -33,14 +33,21 @@ DEFAULT_PAGINATION = False
 
 # additional ========
 HIDE_SIDEBAR = True
+
 DISPLAY_CATEGORIES_ON_MENU = False
+
+# A list of tuples (Title, URL) for additional menu items to appear at the beginning of the main menu.
+COLLAPSE_NAVBAR = True
 
 JINJA_EXTENSIONS = ['jinja2.ext.i18n']
 
 THEME = r"pelican-bootstrap3"
 
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['i18n_subsites']
+PLUGINS = ['i18n_subsites', 'tipue_search']
+
+# search enabled
+DIRECT_TEMPLATES = ('index', 'categories', 'search')
 
 LOAD_CONTENT_CACHE = False
 
