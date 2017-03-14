@@ -9,7 +9,7 @@
 
 
 
-<link rel="canonical" href="http://human-footprint.yichuans.me/output/sagarmatha-national-park.html">
+<link rel="canonical" href="/sagarmatha-national-park.html">
 
         <meta name="author" content="IUCN, UQ and WCS" />
         <meta name="keywords" content="TEST" />
@@ -17,29 +17,25 @@
         <meta property="og:site_name" content="Human Footprint and Forest Loss in natural World Heritage sites" />
         <meta property="og:type" content="article"/>
         <meta property="og:title" content="Sagarmatha National Park"/>
-        <meta property="og:url" content="http://human-footprint.yichuans.me/output/sagarmatha-national-park.html"/>
+        <meta property="og:url" content="/sagarmatha-national-park.html"/>
         <meta property="og:description" content=""/>
-        <meta property="article:published_time" content="2000-03-13" />
+        <meta property="article:published_time" content="2000-03-14" />
             <meta property="article:section" content="misc" />
             <meta property="article:tag" content="TEST" />
             <meta property="article:author" content="IUCN, UQ and WCS" />
 
 
     <!-- Bootstrap -->
-        <link rel="stylesheet" href="http://human-footprint.yichuans.me/output/theme/css/bootstrap.min.css" type="text/css"/>
-    <link href="http://human-footprint.yichuans.me/output/theme/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://human-footprint.yichuans.me/output/theme/css/custom.css" rel="stylesheet">
+        <link rel="stylesheet" href="/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/theme/css/custom.css" rel="stylesheet">
 
-    <link href="http://human-footprint.yichuans.me/output/theme/css/pygments/native.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://human-footprint.yichuans.me/output/theme/css/style.css" type="text/css"/>
-
-        <link href="http://human-footprint.yichuans.me/output/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Human Footprint and Forest Loss in natural World Heritage sites ATOM Feed"/>
+    <link href="/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
 
 
 
-        <link href="http://human-footprint.yichuans.me/output/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Human Footprint and Forest Loss in natural World Heritage sites misc ATOM Feed"/>
+
 
     <!-- map libraries, leaflet and esri, for article.html only-->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -54,8 +50,8 @@
 </style>
 
 <!-- slider -->
-<link rel="stylesheet" type="text/css" href="http://human-footprint.yichuans.me/output/theme/css/leaflet-slider.css">
-<script src="http://human-footprint.yichuans.me/output/theme/js/leaflet-slider.js"></script>
+<link rel="stylesheet" type="text/css" href="/theme/css/leaflet-slider.css">
+<script src="/theme/js/leaflet-slider.js"></script>
 
 
 </head>
@@ -64,7 +60,7 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
         <div class="navbar-header">
-            <a href="http://human-footprint.yichuans.me/output/" class="navbar-brand">
+            <a href="/" class="navbar-brand">
 Human Footprint and Forest Loss in natural World Heritage sites            </a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -85,7 +81,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://human-footprint.yichuans.me/output/sagarmatha-national-park.html"
+                    <a href="/sagarmatha-national-park.html"
                        rel="bookmark"
                        title="Permalink to Sagarmatha National Park">
                         Sagarmatha National Park
@@ -108,7 +104,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
 
 
 <span class="label label-default">Country</span>
-	<a href="http://human-footprint.yichuans.me/output/tag/test.html">TEST</a>
+	<a href="/tag/test.html">TEST</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
@@ -171,7 +167,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
             var disqus_shortname = 'hffl'; // required: replace example with your forum shortname
 
                     var disqus_identifier = 'sagarmatha-national-park';
-                var disqus_url = 'http://human-footprint.yichuans.me/output/sagarmatha-national-park.html';
+                var disqus_url = '/sagarmatha-national-park.html';
 
             var disqus_config = function () {
                 this.language = "en";
@@ -219,13 +215,13 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
       </div>
    </div>
 </footer>
-<script src="http://human-footprint.yichuans.me/output/theme/js/jquery.min.js"></script>
+<script src="/theme/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="http://human-footprint.yichuans.me/output/theme/js/bootstrap.min.js"></script>
+<script src="/theme/js/bootstrap.min.js"></script>
 
 <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
-<script src="http://human-footprint.yichuans.me/output/theme/js/respond.min.js"></script>
+<script src="/theme/js/respond.min.js"></script>
 
     <!-- Disqus -->
     <script type="text/javascript">
@@ -253,7 +249,8 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
     var hf_url = 'https://tiles2.arcgis.com/tiles/x494PplYsmeeZsYB/arcgis/rest/services/HF2009_1993/MapServer'
 
     var map_hf = L.map('hf-map', {
-        attributionControl: false
+        attributionControl: false,
+        scrollWheelZoom: false
     });
     L.esri.basemapLayer('Gray').addTo(map_hf);
 
@@ -280,7 +277,8 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
     var fl_url = 'http://gis-treecover.wri.org/arcgis/rest/services/ForestCover_lossyear_time/ImageServer'
 
     var map_fl = L.map('fl-map', {
-        attributionControl: false
+        attributionControl: false,
+        scrollWheelZoom: false
     });
 
     L.esri.basemapLayer('Gray').addTo(map_fl);
@@ -351,8 +349,8 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
 
 <!-- d3 chart -->
 <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
-<script src="http://human-footprint.yichuans.me/output/theme/js/d3.min.js"></script>
-<script src="http://human-footprint.yichuans.me/output/theme/js/d3plus.min.js"></script>
+<script src="/theme/js/d3.min.js"></script>
+<script src="/theme/js/d3plus.min.js"></script>
 <script>
     var data = [{"type": 'forest-loss', "year": 2001, "forest loss": 0.0},{"type": 'forest-loss', "year": 2002, "forest loss": 0.0},{"type": 'forest-loss', "year": 2003, "forest loss": 0.002028988},{"type": 'forest-loss', "year": 2004, "forest loss": 0.006218942},{"type": 'forest-loss', "year": 2005, "forest loss": 0.0},{"type": 'forest-loss', "year": 2006, "forest loss": 0.0},{"type": 'forest-loss', "year": 2007, "forest loss": 0.015986813},{"type": 'forest-loss', "year": 2008, "forest loss": 0.0},{"type": 'forest-loss', "year": 2009, "forest loss": 0.0},{"type": 'forest-loss', "year": 2010, "forest loss": 0.0},{"type": 'forest-loss', "year": 2011, "forest loss": 0.0},{"type": 'forest-loss', "year": 2012, "forest loss": 0.0}];
 
