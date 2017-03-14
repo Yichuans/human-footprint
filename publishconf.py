@@ -14,6 +14,8 @@ from pelicanconf import *
 SITEURL = 'http://human-footprint.yichuans.me/output'
 SEARCH_URL = SITEURL + '/search'
 
+MENUITEMS = [('country', SITEURL + '/tags')]
+
 RELATIVE_URLS = False
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
