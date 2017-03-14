@@ -1,6 +1,6 @@
-
 import os
 import pandas as pd
+import codecs
 
 # Author: UNEP-WCMC
 # Year: 1986
@@ -11,7 +11,7 @@ import pandas as pd
 # hfcg: 5.2571
 
 df = pd.read_csv('hffl.csv')
-wh = pd.read_csv('wh_attr.csv')
+wh = pd.read_csv('wh_attr.csv', encoding='utf-8')
 
 
 def get_fly(row):
@@ -28,6 +28,9 @@ def get_attr(wdpaid, field_name):
 	row = wh[wh['wdpaid']==wdpaid]
 	return row[field_name].iat[0]
 
+def get_name(wdpaid):
+	return get_attr(wdpaid, 'en_name')
+
 def get_year(wdpaid):
 	return get_attr(wdpaid, 'status_yr')
 
@@ -40,7 +43,7 @@ def make_md_wdpaid(wdpaid):
 	row = df[df['WDPAID']==wdpaid]
 
 	lines = dict()
-	lines['Title'] = row['NAME'].iat[0]
+	lines['Title'] = get_name(wdpaid)
 	lines['Tags'] = get_country(wdpaid)
 	lines['Author'] = 'IUCN, UQ and WCS'
 	lines['Year'] = get_year(wdpaid)
@@ -54,11 +57,15 @@ def make_md_wdpaid(wdpaid):
 	lines['fly'] = get_fly(row)
 	lines['fc'] = row['Tree_area_2000'].iat[0]
 
-	with open('.' + os.sep + 'content' + os.sep + str(wdpaid) + '.md', 'w') as f:
+	with codecs.open('.' + os.sep + 'content' + os.sep + str(wdpaid) + '.md', 'w', encoding='utf8') as f:
 		for key in lines:
 			f.write(key)
 			f.write(': ')
-			f.write(str(lines[key]))
+			value = lines[key]
+			if isinstance(value, unicode):
+				f.write(value)
+			else:
+				f.write(str(value))
 			f.write('\n')
 
 
