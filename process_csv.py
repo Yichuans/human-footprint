@@ -11,6 +11,7 @@ import pandas as pd
 # hfcg: 5.2571
 
 df = pd.read_csv('hffl.csv')
+wh = pd.read_csv('wh_attr.csv')
 
 
 def get_fly(row):
@@ -23,16 +24,29 @@ def get_fly(row):
 	result = ','.join(result)
 	return "[" + result + "]"
 
+def get_attr(wdpaid, field_name):
+	row = wh[wh['wdpaid']==wdpaid]
+	return row[field_name].iat[0]
+
+def get_year(wdpaid):
+	return get_attr(wdpaid, 'status_yr')
+
+def get_country(wdpaid):
+	return get_attr(wdpaid, 'country_name').replace(';', ', ')
+
+
 def make_md_wdpaid(wdpaid):
 
 	row = df[df['WDPAID']==wdpaid]
 
 	lines = dict()
 	lines['Title'] = row['NAME'].iat[0]
-	lines['Tags'] = 'TEST'
+	lines['Tags'] = get_country(wdpaid)
 	lines['Author'] = 'IUCN, UQ and WCS'
-	lines['Year'] = 2000
-	lines['Date'] = 2000
+	lines['Year'] = get_year(wdpaid)
+
+	lines['Date'] = 2017
+
 	lines['wdpaid'] = wdpaid
 	lines['hf93'] = row['HF_1993'].iat[0]
 	lines['hf09'] = row['HF_2009'].iat[0]
@@ -46,6 +60,7 @@ def make_md_wdpaid(wdpaid):
 			f.write(': ')
 			f.write(str(lines[key]))
 			f.write('\n')
+
 
 def test_run():
 	for wdpaid in df['WDPAID']:

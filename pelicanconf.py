@@ -32,6 +32,9 @@ AUTHOR_FEED_RSS = None
 DEFAULT_PAGINATION = False
 
 # additional ========
+ARTICLE_URL = 'sites/{wdpaid}/'
+ARTICLE_SAVE_AS = 'sites/{wdpaid}/index.html'
+
 HIDE_SIDEBAR = True
 
 DISPLAY_CATEGORIES_ON_MENU = False
@@ -47,7 +50,7 @@ PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['i18n_subsites', 'tipue_search']
 
 # search enabled
-DIRECT_TEMPLATES = ('index', 'categories', 'search')
+DIRECT_TEMPLATES = ('index', 'tags', 'search')
 
 LOAD_CONTENT_CACHE = False
 
