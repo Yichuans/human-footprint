@@ -15,7 +15,6 @@
                 justify-content: space-between;
     }
 
-
     .navbar-brand {
         float: left;
         height: auto;
@@ -38,12 +37,6 @@
         margin-right: 15px
     }
 
-
-    /*content-row FLEX*/
-    .content-container {
-        padding-left: 0;
-        padding-right: 0;
-    }
 
     .content-row {
         display: -webkit-box;
