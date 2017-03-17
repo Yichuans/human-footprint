@@ -183,9 +183,9 @@
                                     <div class="panel-heading">Human footprint change 1993 - 2009</div>
                                     <div class="panel-body">
                                         {% if article.hfcg|float > 0 %}
-                                        <p style="color:#E74856"><i class="fa fa-chevron-up" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hfcg|float)}}</p>
+                                        <p style="color:#E74856"><i class="fa fa-chevron-up" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hf93|float - article.hf09|float)}}</p>
                                         {% else %}
-                                        <p style="color:#7BA7FF"> <i class="fa fa-chevron-down" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hfcg|float)}}</p>
+                                        <p style="color:#7BA7FF"> <i class="fa fa-chevron-down" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hf93|float - article.hf09|float)}}</p>
                                         {% endif %}
                                     </div>
                                 </div>
