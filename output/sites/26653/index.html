@@ -136,7 +136,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
                 <!-- human footprint exp -->
                 <div class="row content-row">
                     <div class='col-md-12 col-sm-12 col-xs-12'>
-                        <h2>Human Footprint change <small><a href="#hf-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
+                        <h2><a onclick="displayHF()">Human Footprint change</a> <small><a href="#hf-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
                     </div>
                 </div>
 
@@ -170,7 +170,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
 
 
                 <!-- human footprint -->
-                <div class="row content-row">
+                <div class="row content-row" id='hf-section'>
                     <!-- map -->
                     <div class='col-md-6 col-sm-6 col-xs-12'>
                         <!-- hf map -->
@@ -185,7 +185,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
                                 <div class="panel panel-default num-stat">
                                     <div class="panel-heading">Human footprint change 1993 - 2009</div>
                                     <div class="panel-body">
-                                        <p style="color:#E74856"><i class="fa fa-chevron-up" aria-hidden="true" style='display:inline'></i>&nbsp;-0.82</p>
+                                        <p style="color:#E74856"><i class="fa fa-chevron-up" aria-hidden="true" style='display:inline'></i>&nbsp;0.82</p>
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
                 <!-- forest loss exp -->
                 <div class="row content-row">
                     <div class='col-md-12 col-sm-12 col-xs-12'>
-                        <h2>Forst loss <small><a href="#fl-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
+                        <h2><a onclick="displayFL()">Forest loss</a> <small><a href="#fl-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
                     </div>
                 </div>
 
@@ -251,7 +251,7 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
                 </div>
 
                 <!-- forest loss -->
-                <div class="row content-row">
+                <div class="row content-row" id='fl-section'>
                     <div class='col-md-6 col-sm-6 col-xs-12'>
                         <div id="fl-viz"></div>
                     </div>
@@ -447,7 +447,29 @@ Human Footprint and Forest Loss in natural World Heritage sites            </a>
             // maxZoom: 9 
         });
 
+        // after loading hide fl
+        displayInit();
+
     });
+
+
+    function toggleSection(contentSection, display){
+        document.getElementById(contentSection).style.display = display;
+    }
+
+    function displayHF() {
+        toggleSection("hf-section", "");
+        toggleSection("fl-section", "none");
+    }
+
+    function displayFL() {
+        toggleSection("hf-section", "none");
+        toggleSection("fl-section", "");
+    }
+
+    function displayInit() {
+        toggleSection('fl-section', 'none');
+    }
 
 </script>
 

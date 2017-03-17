@@ -133,7 +133,7 @@
                 <!-- human footprint exp -->
                 <div class="row content-row">
                     <div class='col-md-12 col-sm-12 col-xs-12'>
-                        <h2>Human Footprint change <small><a href="#hf-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
+                        <h2><a onclick="displayHF()">Human Footprint change</a> <small><a href="#hf-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
                     </div>
                 </div>
 
@@ -167,7 +167,7 @@
 
 
                 <!-- human footprint -->
-                <div class="row content-row">
+                <div class="row content-row" id='hf-section'>
                     <!-- map -->
                     <div class='col-md-6 col-sm-6 col-xs-12'>
                         <!-- hf map -->
@@ -183,9 +183,9 @@
                                     <div class="panel-heading">Human footprint change 1993 - 2009</div>
                                     <div class="panel-body">
                                         {% if article.hfcg|float > 0 %}
-                                        <p style="color:#E74856"><i class="fa fa-chevron-up" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hf93|float - article.hf09|float)}}</p>
+                                        <p style="color:#E74856"><i class="fa fa-chevron-up" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hf09|float - article.hf93|float)}}</p>
                                         {% else %}
-                                        <p style="color:#7BA7FF"> <i class="fa fa-chevron-down" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hf93|float - article.hf09|float)}}</p>
+                                        <p style="color:#7BA7FF"> <i class="fa fa-chevron-down" aria-hidden="true" style='display:inline'></i>&nbsp;{{ '{0:0.2f}'.format(article.hf09|float - article.hf93|float)}}</p>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -218,7 +218,7 @@
                 <!-- forest loss exp -->
                 <div class="row content-row">
                     <div class='col-md-12 col-sm-12 col-xs-12'>
-                        <h2>Forst loss <small><a href="#fl-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
+                        <h2><a onclick="displayFL()">Forest loss</a> <small><a href="#fl-exp" role="button" data-toggle="modal"><i class="fa fa-question-circle-o" aria-hidden="true"></i></a></small></h2>
                     </div>
                 </div>
 
@@ -252,7 +252,7 @@
                 </div>
 
                 <!-- forest loss -->
-                <div class="row content-row">
+                <div class="row content-row" id='fl-section'>
                     <div class='col-md-6 col-sm-6 col-xs-12'>
                         <div id="fl-viz"></div>
                     </div>
@@ -387,7 +387,29 @@
             // maxZoom: 9 
         });
 
+        // after loading hide fl
+        displayInit();
+
     });
+
+
+    function toggleSection(contentSection, display){
+        document.getElementById(contentSection).style.display = display;
+    }
+
+    function displayHF() {
+        toggleSection("hf-section", "");
+        toggleSection("fl-section", "none");
+    }
+
+    function displayFL() {
+        toggleSection("hf-section", "none");
+        toggleSection("fl-section", "");
+    }
+
+    function displayInit() {
+        toggleSection('fl-section', 'none');
+    }
 
 </script>
 
