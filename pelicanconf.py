@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'International Union for Conservation of Nature, University of Queensland, and Wildlife Conservation Society'
-SITENAME = u'Human Footprint and Forest Loss in natural World Heritage sites'
+SITENAME = u'Human Footprint in natural World Heritage sites'
 SITEURL = ''
 
 PATH = 'content'
@@ -54,7 +54,7 @@ DIRECT_TEMPLATES = ('index', 'tags', 'search')
 
 LOAD_CONTENT_CACHE = False
 
-DISQUS_SITENAME = 'hffl'
+DISQUS_SITENAME = 'human-footprint-natural-world-heritage'
 # CC_LICENSE = 'CC-BY'
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
